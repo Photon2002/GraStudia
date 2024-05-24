@@ -27,30 +27,45 @@ void Mapa::WczytajMape()
 			sf::Color KolorPixela = mapa.getPixel(x, y);
 
 			if(KolorPixela.r == 0 && KolorPixela.g == 0 && KolorPixela.b == 255) {
-				TablicaWartosci[y][x] = 1;
+				TablicaWartosci[y][x] = 0;
 			}
 			else if (KolorPixela.r == 0 && KolorPixela.g == 255 && KolorPixela.b == 0) {
-				TablicaWartosci[y][x] = 2;
+				TablicaWartosci[y][x] = 1;
 			}
 			else if (KolorPixela.r == 86 && KolorPixela.g == 47 && KolorPixela.b == 0) {
-				TablicaWartosci[y][x] = 3;
+				TablicaWartosci[y][x] = 2;
 			}
 			else
 			{
-				TablicaWartosci[y][x] = 0;
+				TablicaWartosci[y][x] = -1;
 			}
+		}
+	}
+	for (unsigned int y = 0; y < wysokosc; y++)
+	{
+		for (unsigned int x = 0; x < szerokosc; x++)
+		{
+			MapaJednowymiarowa.push_back(TablicaWartosci[y][x]);
 		}
 	}
 }
 
 void Mapa::WypiszPola()
 {
-	for (unsigned int y = 0; y < wysokosc; y++)
+	/*for (unsigned int y = 0; y < wysokosc; y++)
 	{
 		for (unsigned int x = 0; x < szerokosc; x++)
 		{
 			std::cout << TablicaWartosci[y][x] << " ";
 		}
 		std::cout << std::endl;
+	}*/
+	for (int i = 0; i < MapaJednowymiarowa.size(); ++i)
+	{
+		std::cout << MapaJednowymiarowa[i] << " ";
+		if ((i+1)%szerokosc == 0)
+		{
+			std::cout<< "" << std::endl;
+		}
 	}
 }

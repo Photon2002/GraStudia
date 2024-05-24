@@ -7,10 +7,11 @@ class Mapa
 	public:
 		Mapa(const std::string& sciezkaPliku);
 		void WypiszPola();
-	private:
-		sf::Image mapa;
+		std::vector<int> MapaJednowymiarowa;
 		unsigned int szerokosc;
 		unsigned int wysokosc;
+	private:
+		sf::Image mapa;
 		std::vector<std::vector<int>> TablicaWartosci;
 		void WczytajMape();
 };
