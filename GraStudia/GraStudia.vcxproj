@@ -147,13 +147,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gracz.cpp" />
     <ClCompile Include="GraStudia.cpp" />
     <ClCompile Include="Mapa.cpp" />
     <ClCompile Include="Plansza.cpp" />
+    <ClCompile Include="postac.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gracz.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="Plansza.h" />
+    <ClInclude Include="postac.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

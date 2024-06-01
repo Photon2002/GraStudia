@@ -47,7 +47,7 @@ void Mapa::WczytajMape()
 		{
 			MapaJednowymiarowa.push_back(TablicaWartosci[y][x]);
 		}
-	}
+	}//tu mozna przerobic na zakresowa petle for
 }
 
 void Mapa::WypiszPola()
