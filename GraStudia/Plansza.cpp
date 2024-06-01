@@ -13,6 +13,7 @@ bool Plansza::load(const std::string& tileset, sf::Vector2u tileSize, std::vecto
 
         // populate the vertex array, with two triangles per tile
         for (unsigned int i = 0; i < width; ++i)
+        {
             for (unsigned int j = 0; j < height; ++j)
             {
                 // get the current tile number
@@ -40,14 +41,15 @@ bool Plansza::load(const std::string& tileset, sf::Vector2u tileSize, std::vecto
                 triangles[3].texCoords = sf::Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
                 triangles[4].texCoords = sf::Vector2f((tu + 1) * tileSize.x, tv * tileSize.y);
                 triangles[5].texCoords = sf::Vector2f((tu + 1) * tileSize.x, (tv + 1) * tileSize.y);
-            }
 
+            
+            }
+        }
         return true;
 }
 
 void Plansza::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-   {
         // apply the transform
         states.transform *= getTransform();
 
@@ -56,5 +58,4 @@ void Plansza::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
         // draw the vertex array
         target.draw(m_vertices, states);
-    }
 }

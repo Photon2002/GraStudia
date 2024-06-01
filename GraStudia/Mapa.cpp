@@ -48,6 +48,18 @@ void Mapa::WczytajMape()
 			MapaJednowymiarowa.push_back(TablicaWartosci[y][x]);
 		}
 	}//tu mozna przerobic na zakresowa petle for
+
+	for (int element: MapaJednowymiarowa)
+	{
+		if (element == 0)
+		{
+			MapaKolizji.push_back(1);
+		}
+		else
+		{
+			MapaKolizji.push_back(0);
+		}
+	}
 }
 
 void Mapa::WypiszPola()
@@ -59,13 +71,21 @@ void Mapa::WypiszPola()
 			std::cout << TablicaWartosci[y][x] << " ";
 		}
 		std::cout << std::endl;
-	}*/
+	}
 	for (int i = 0; i < MapaJednowymiarowa.size(); ++i)
 	{
 		std::cout << MapaJednowymiarowa[i] << " ";
 		if ((i+1)%szerokosc == 0)
 		{
 			std::cout<< "" << std::endl;
+		}
+	}*/
+	for (int i = 0; i < MapaKolizji.size(); ++i)
+	{
+		std::cout << MapaKolizji[i] << " ";
+		if ((i + 1) % szerokosc == 0)
+		{
+			std::cout << "" << std::endl;
 		}
 	}
 }

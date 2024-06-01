@@ -7,9 +7,10 @@ class Gracz: public Postac
 {
 public:
 	float predkosc = 100.f;
-	sf::CircleShape cialo;
 	sf::Texture tekstura;
 	sf::Sprite SpriteGracza;
+	sf::RectangleShape KolizjaGracza;
+	sf::Vector2f poprzedniaPozycjaGracza;
 	Gracz(const std::string& texturePath, float x, float y, float szybkosc);
 	void RuchPostaci(sf::Vector2f delta);
 	virtual void RysujSpritea(sf::RenderWindow& window);

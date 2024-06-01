@@ -149,12 +149,14 @@
   <ItemGroup>
     <ClCompile Include="gracz.cpp" />
     <ClCompile Include="GraStudia.cpp" />
+    <ClCompile Include="KolizjaMapy.cpp" />
     <ClCompile Include="Mapa.cpp" />
     <ClCompile Include="Plansza.cpp" />
     <ClCompile Include="postac.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gracz.h" />
+    <ClInclude Include="KolizjaMapy.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="Plansza.h" />
     <ClInclude Include="postac.h" />

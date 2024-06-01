@@ -25,16 +25,22 @@ Gracz::Gracz(const std::string& texturePath, float x, float y, float szybkosc)
     }
     SpriteGracza.setTexture(tekstura);
     SpriteGracza.setPosition(x, y);
+    KolizjaGracza.setSize(sf::Vector2f(19, 25));
+    KolizjaGracza.setPosition(x, y);
+    KolizjaGracza.setFillColor(sf::Color::Green);
 }
 
 void Gracz::RuchPostaci(sf::Vector2f delta)
 {
+    poprzedniaPozycjaGracza = KolizjaGracza.getPosition();
     SpriteGracza.move(delta);
+    KolizjaGracza.move(delta);
 }
 
 void Gracz::RysujSpritea(sf::RenderWindow& window)
 {
     window.draw(SpriteGracza);
+    //window.draw(KolizjaGracza);
 }
 
 void Gracz::Aktualizacja(const sf::Time& dt)
@@ -61,7 +67,21 @@ void Gracz::Aktualizacja(const sf::Time& dt)
         tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 70, 19, 25));
     }
     RuchPostaci(poruszanie);
+
+    /*//lewe
+    if (SpriteGracza.getPosition().x < 0.f)
+        SpriteGracza.setPosition(0.f, SpriteGracza.getPosition().y);
+    //gora
+    if (SpriteGracza.getPosition().y < 0.f)
+        SpriteGracza.setPosition(SpriteGracza.getPosition().x, 0.f);
+    //prawe
+    if (SpriteGracza.getPosition().x + SpriteGracza.getGlobalBounds().width > 1024)
+        SpriteGracza.setPosition(1024 - SpriteGracza.getGlobalBounds().width, SpriteGracza.getPosition().y);
+    //dol
+    if (SpriteGracza.getPosition().y > 1024)
+        SpriteGracza.setPosition(SpriteGracza.getPosition().x, 1024 - SpriteGracza.getGlobalBounds().height);*/
 }
+
 
 sf::Vector2f Gracz::getPosition() const
 {
