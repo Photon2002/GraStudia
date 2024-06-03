@@ -40,8 +40,8 @@ int main()
                 window.close();
         }
         gracz.Aktualizacja(dt);
-        //sf::Vector2f graczPos = gracz.getPosition();
-        //view.setCenter(graczPos);
+        sf::Vector2f graczPos = gracz.getPosition();
+        view.setCenter(graczPos);
 
         
 
@@ -56,7 +56,7 @@ int main()
 
         window.clear();
         window.draw(pola);
-        //window.setView(view);
+        window.setView(view);
         gracz.RysujSpritea(window);
         if(czyPrzeciecie == true)
         {
