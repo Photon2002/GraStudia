@@ -2,9 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-
 
 /*Postac::Postac(float radius) {
     cialo.setRadius(radius);
@@ -25,7 +22,7 @@ Gracz::Gracz(const std::string& texturePath, float x, float y, float szybkosc)
     }
     SpriteGracza.setTexture(tekstura);
     SpriteGracza.setPosition(x, y);
-    KolizjaGracza.setSize(sf::Vector2f(19, 25));
+    KolizjaGracza.setSize(sf::Vector2f(SpriteGracza.getGlobalBounds().width, SpriteGracza.getGlobalBounds().height));
     KolizjaGracza.setPosition(x, y);
     KolizjaGracza.setFillColor(sf::Color::Green);
 }
@@ -86,4 +83,14 @@ void Gracz::Aktualizacja(const sf::Time& dt)
 sf::Vector2f Gracz::getPosition() const
 {
     return SpriteGracza.getPosition(); // Zak³adam, ¿e masz sprite reprezentuj¹cy gracza
+}
+
+sf::Vector2f Gracz::getPoprzedniaPozycjaGracza() const
+{
+    return poprzedniaPozycjaGracza;
+}
+
+void Gracz::setPoprzedniaPozycjaGracza(const sf::Vector2f& pozycja)
+{
+    poprzedniaPozycjaGracza = pozycja;
 }

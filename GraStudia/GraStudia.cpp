@@ -3,6 +3,7 @@
 #include "Plansza.h"
 #include "postac.h"
 #include "gracz.h"
+#include "Pocisk.h"
 #include "KolizjaMapy.h"
 
 bool checkCollision(const sf::RectangleShape& rect1, const sf::RectangleShape& rect2) {
@@ -19,6 +20,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1024, 1024), "SFML GAME");
     Mapa mapa1("assets/mapa2.png");
     Gracz gracz("assets/gracz.png", 70.f, 130.f, 500.f);
+    Pocisk jablko("assets/pocisk.png", gracz, 1000.f);
     sf::Clock clock;
     sf::View view(sf::FloatRect(0, 0, 300, 300));
     mapa1.WypiszPola();
@@ -40,6 +42,7 @@ int main()
                 window.close();
         }
         gracz.Aktualizacja(dt);
+        jablko.AktualizujPozycje(gracz);
         sf::Vector2f graczPos = gracz.getPosition();
         view.setCenter(graczPos);
 
@@ -58,10 +61,12 @@ int main()
         window.draw(pola);
         window.setView(view);
         gracz.RysujSpritea(window);
+        jablko.RysujPocisk(window);
         if(czyPrzeciecie == true)
         {
-            gracz.KolizjaGracza.setPosition(gracz.poprzedniaPozycjaGracza);
-            gracz.SpriteGracza.setPosition(gracz.poprzedniaPozycjaGracza);
+            gracz.setPoprzedniaPozycjaGracza(gracz.getPoprzedniaPozycjaGracza());
+            gracz.KolizjaGracza.setPosition(gracz.getPoprzedniaPozycjaGracza());
+            gracz.SpriteGracza.setPosition(gracz.getPoprzedniaPozycjaGracza());
         }
         window.display();
     }

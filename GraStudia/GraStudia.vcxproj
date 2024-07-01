@@ -152,6 +152,7 @@
     <ClCompile Include="KolizjaMapy.cpp" />
     <ClCompile Include="Mapa.cpp" />
     <ClCompile Include="Plansza.cpp" />
+    <ClCompile Include="Pocisk.cpp" />
     <ClCompile Include="postac.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="KolizjaMapy.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="Plansza.h" />
+    <ClInclude Include="Pocisk.h" />
     <ClInclude Include="postac.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
