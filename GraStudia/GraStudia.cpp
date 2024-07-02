@@ -31,9 +31,9 @@ int main()
     std::vector<Pocisk> pociskiWystrzelone;
 
     if (!pola.load("assets/paleta.png", sf::Vector2u(32, 32), mapa1.MapaJednowymiarowa, mapa1.szerokosc, mapa1.wysokosc))
-        return -1;
+        throw std::exception("Nie mozna zaladowac palety!");//wyjatek
     if (!polaKolizji.kolizja(sf::Vector2u(32, 32), mapa1.MapaKolizji, mapa1.szerokosc, mapa1.wysokosc))
-        return -1;
+        throw std::exception("Nie mozna zaladowac mapy kolizji!");
     while (window.isOpen())
     {
         sf::Event event;
@@ -56,9 +56,9 @@ int main()
         //view.setCenter(graczPos);
 
         
-        for (int i = 0; i < polaKolizji.ListaObiektowKolizyjnych.size(); i++)
+        for (auto poleKolizji : polaKolizji.ListaObiektowKolizyjnych)
         {
-            czyPrzeciecie = checkCollision(gracz.KolizjaGracza, polaKolizji.ListaObiektowKolizyjnych[i]);
+            czyPrzeciecie = checkCollision(gracz.KolizjaGracza, poleKolizji);
             if (czyPrzeciecie)
             {
                 break;
@@ -94,11 +94,19 @@ int main()
             spacePressed = false;
         }
 
-        for (Pocisk& pocisk : pociskiWystrzelone) 
+        for (int i = pociskiWystrzelone.size()-1; i >= 0; i--)
         {
-            pocisk.LotPocisku(dt);
-            pocisk.RysujPocisk(window);
+            if (!pociskiWystrzelone[i].czyPozaZasiegiem(gracz))
+            {
+                pociskiWystrzelone[i].LotPocisku(dt);
+                pociskiWystrzelone[i].RysujPocisk(window);
+            }
+            else
+            {
+                pociskiWystrzelone.erase(pociskiWystrzelone.begin()+i);//iterator
+            }
         }
+
 
         window.display();
     }

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -24,7 +25,7 @@ class Gracz: public Postac
 		Kierunek kierunek_postaci = W_DOL;
 		sf::RectangleShape KolizjaGracza;
 		Gracz(const std::string& texturePath, float x, float y, float szybkosc);
-		virtual void RysujSpritea(sf::RenderWindow& window);
+		virtual void RysujSpritea(sf::RenderWindow& window) override;
 		void Aktualizacja(const sf::Time& dt);
 		sf::Vector2f getPosition() const;
 		sf::Vector2f getPoprzedniaPozycjaGracza() const;

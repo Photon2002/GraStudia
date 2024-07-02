@@ -6,8 +6,7 @@ Mapa::Mapa(const std::string& sciezkaPliku)
 {
 	if (!mapa.loadFromFile(sciezkaPliku))
 	{
-		std::cerr << "Blad wczytywania pliku, nie mozna wczytac mapy!" << std::endl;
-		exit(EXIT_FAILURE);
+		throw std::exception("Nie mozna zaladowac mapy!");
 	}
 	sf::Vector2u rozmiar = mapa.getSize();
 	szerokosc = rozmiar.x;

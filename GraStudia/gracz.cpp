@@ -18,7 +18,7 @@ Gracz::Gracz(const std::string& texturePath, float x, float y, float szybkosc)
 {
     if (!tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 6, 19, 25)))
     {
-        perror("Blad tekstury!");
+        throw std::exception("Nie mozna zaladowac tekstury!");
     }
     SpriteGracza.setTexture(tekstura);
     SpriteGracza.setPosition(x, y);

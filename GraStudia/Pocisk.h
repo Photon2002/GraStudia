@@ -1,6 +1,8 @@
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "gracz.h"
 
 class Gracz;
 
@@ -11,9 +13,9 @@ class Pocisk
 	private:
 		sf::Texture TeksturaPocisku;
 		float predkoscPocisku = 300.f;
-		float zasieg = 200.f;
+		float zasieg = 150.f;
 		float promien = 5.0f;
-		int kierunekLotu = 0;
+		Gracz::Kierunek kierunekLotu = Gracz::Kierunek::W_DOL;
 		bool czyKopia = false;
 
 	public:
@@ -25,7 +27,7 @@ class Pocisk
 		~Pocisk();
 		void RysujPocisk(sf::RenderWindow& window);
 		void AktualizujPozycje(const Gracz& gracz);
-		//bool czyPozaZasiegiem(const Gracz& gracz) const;
+		bool czyPozaZasiegiem(const Gracz& gracz) const;
 		void Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski, const Gracz& gracz);
 		void LotPocisku(const sf::Time& dt);
 		//void LotPocisku(const sf::Time& dt, const Gracz& gracz);
