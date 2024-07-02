@@ -27,6 +27,7 @@ int main()
     KolizjaMapy polaKolizji;
     Plansza pola;
     bool czyPrzeciecie = false;
+    bool spacePressed = false;
     std::vector<Pocisk> pociskiWystrzelone;
 
     if (!pola.load("assets/paleta.png", sf::Vector2u(32, 32), mapa1.MapaJednowymiarowa, mapa1.szerokosc, mapa1.wysokosc))
@@ -41,6 +42,13 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+                spacePressed = true;
+            }
+
+            if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
+                spacePressed = false;
+            }
         }
         gracz.Aktualizacja(dt);
         jablko.AktualizujPozycje(gracz);
@@ -48,7 +56,6 @@ int main()
         //view.setCenter(graczPos);
 
         
-
         for (int i = 0; i < polaKolizji.ListaObiektowKolizyjnych.size(); i++)
         {
             czyPrzeciecie = checkCollision(gracz.KolizjaGracza, polaKolizji.ListaObiektowKolizyjnych[i]);
@@ -62,7 +69,7 @@ int main()
         window.draw(pola);
         //window.setView(view);
         gracz.RysujSpritea(window);
-        //jablko.RysujPocisk(window);
+        jablko.RysujPocisk(window);
         if(czyPrzeciecie == true)
         {
             gracz.setPoprzedniaPozycjaGracza(gracz.getPoprzedniaPozycjaGracza());
@@ -75,16 +82,24 @@ int main()
             std::cout << "Pozycja kopii: " << nowyPocisk.PozycjaPocisku.x << ", " << nowyPocisk.PozycjaPocisku.y << std::endl;
 
         }*/
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) 
+
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
             // Wystrzelenie pocisku
             jablko.Strzal(window, pociskiWystrzelone);
+        }*/
+        if (spacePressed)
+        {
+            jablko.Strzal(window, pociskiWystrzelone);
+            spacePressed = false;
         }
 
-        for (Pocisk& pocisk : pociskiWystrzelone) {
-            pocisk.LotPocisku(dt);
+        for (Pocisk& pocisk : pociskiWystrzelone) 
+        {
+            pocisk.LotPocisku(dt, gracz);
             pocisk.RysujPocisk(window);
         }
+
         window.display();
     }
     
