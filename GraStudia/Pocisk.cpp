@@ -68,6 +68,37 @@ void Pocisk::Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski, cons
     pociski.push_back(nowyPocisk);
 }
 
+Pocisk& Pocisk::operator+=(sf::Vector2f poruszaniePocisku)
+{
+    SpritePocisku.move(poruszaniePocisku);
+    KolizjaPocisku.move(poruszaniePocisku);
+    PozycjaPocisku += poruszaniePocisku;
+    return *this;
+}
+
+void Pocisk::LotPocisku(const sf::Time& dt)
+{
+    sf::Vector2f poruszaniePocisku(0.f, 0.f);
+    switch (kierunekLotu)
+    {
+    case Gracz::Kierunek::W_GORE:
+        poruszaniePocisku.y -= predkoscPocisku * dt.asSeconds();
+        break;
+    case Gracz::Kierunek::W_DOL:
+        poruszaniePocisku.y += predkoscPocisku * dt.asSeconds();
+        break;
+    case Gracz::Kierunek::W_LEWO:
+        poruszaniePocisku.x -= predkoscPocisku * dt.asSeconds();
+        break;
+    case Gracz::Kierunek::W_PRAWO:
+        poruszaniePocisku.x += predkoscPocisku * dt.asSeconds();
+        break;
+    }
+    *this += poruszaniePocisku;
+}
+
+
+/*
 void Pocisk::LotPocisku(const sf::Time& dt)
 {
     sf::Vector2f poruszaniePocisku(0.f, 0.f);
@@ -89,7 +120,7 @@ void Pocisk::LotPocisku(const sf::Time& dt)
     SpritePocisku.move(poruszaniePocisku);
     KolizjaPocisku.move(poruszaniePocisku);
     PozycjaPocisku += poruszaniePocisku;
-}
+}*/
 
 Pocisk::~Pocisk()
 {
