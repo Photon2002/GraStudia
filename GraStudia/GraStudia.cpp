@@ -90,13 +90,13 @@ int main()
         }*/
         if (spacePressed)
         {
-            jablko.Strzal(window, pociskiWystrzelone);
+            jablko.Strzal(window, pociskiWystrzelone, gracz);
             spacePressed = false;
         }
 
         for (Pocisk& pocisk : pociskiWystrzelone) 
         {
-            pocisk.LotPocisku(dt, gracz);
+            pocisk.LotPocisku(dt);
             pocisk.RysujPocisk(window);
         }
 

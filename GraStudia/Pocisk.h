@@ -13,6 +13,7 @@ class Pocisk
 		float predkoscPocisku = 300.f;
 		float zasieg = 200.f;
 		float promien = 5.0f;
+		int kierunekLotu = 0;
 		bool czyKopia = false;
 
 	public:
@@ -24,9 +25,10 @@ class Pocisk
 		~Pocisk();
 		void RysujPocisk(sf::RenderWindow& window);
 		void AktualizujPozycje(const Gracz& gracz);
-		bool czyPozaZasiegiem(const Gracz& gracz) const;
-		void Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski);
-		//void LotPocisku(const sf::Time& dt);
-		void LotPocisku(const sf::Time& dt, const Gracz& gracz);
+		//bool czyPozaZasiegiem(const Gracz& gracz) const;
+		void Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski, const Gracz& gracz);
+		void LotPocisku(const sf::Time& dt);
+		//void LotPocisku(const sf::Time& dt, const Gracz& gracz);
 };
 
+	

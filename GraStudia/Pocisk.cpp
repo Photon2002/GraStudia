@@ -10,11 +10,14 @@ Pocisk::Pocisk(const std::string& texturePath, const Gracz& gracz, float szybkos
     {
         perror("Blad tekstury!");
     }
-    SpritePocisku.setTexture(TeksturaPocisku);
-    SpritePocisku.setPosition(gracz.getPosition() + sf::Vector2f(1.75f, 2.f));
-    KolizjaPocisku.setRadius(promien);
-    KolizjaPocisku.setFillColor(sf::Color::Red);
-    KolizjaPocisku.setPosition(gracz.getPosition() + sf::Vector2f(1.75f, 2.f));
+    if (czyKopia == false)
+    {
+        SpritePocisku.setTexture(TeksturaPocisku);
+        SpritePocisku.setPosition(gracz.getPosition() + sf::Vector2f(1.75f, 2.f));
+        KolizjaPocisku.setRadius(promien);
+        KolizjaPocisku.setFillColor(sf::Color::Red);
+        KolizjaPocisku.setPosition(gracz.getPosition() + sf::Vector2f(1.75f, 2.f));
+    }
 }
 
 void Pocisk::RysujPocisk(sf::RenderWindow& window)
@@ -62,33 +65,46 @@ Pocisk::Pocisk(const Pocisk& pocisk)
     return false;
 }*/
 
-void Pocisk::Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski)
+void Pocisk::Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski, const Gracz& gracz)
 {
     
     Pocisk nowyPocisk(*this);
     nowyPocisk.czyKopia = true;
     pociski.push_back(nowyPocisk);
+    
+    switch (gracz.kierunek_postaci)
+    {
+    case Gracz::Kierunek::W_GORE:
+        kierunekLotu = 1;
+        break;
+    case Gracz::Kierunek::W_DOL:
+        kierunekLotu = 2;
+        break;
+    case Gracz::Kierunek::W_LEWO:
+        kierunekLotu = 3;
+        break;
+    case Gracz::Kierunek::W_PRAWO:
+        kierunekLotu = 4;
+        break;
+    }
     std::cout << "Narysowalem pocisk!" << std::endl;
 
 }
 
-void Pocisk::LotPocisku(const sf::Time& dt, const Gracz& gracz)
+void Pocisk::LotPocisku(const sf::Time& dt)
 {
     sf::Vector2f poruszaniePocisku(0.f, 0.f);
-    switch (gracz.kierunek_postaci)
+    
+    switch (kierunekLotu)
     {
-        case Gracz::Kierunek::W_GORE:
+        case 1:
             poruszaniePocisku.y -= predkoscPocisku * dt.asSeconds();
-            break;
-        case Gracz::Kierunek::W_DOL:
+        case 2:
             poruszaniePocisku.y += predkoscPocisku * dt.asSeconds();
-            break;
-        case Gracz::Kierunek::W_LEWO:
+        case 3:
             poruszaniePocisku.x -= predkoscPocisku * dt.asSeconds();
-            break;
-        case Gracz::Kierunek::W_PRAWO:
+        case 4:
             poruszaniePocisku.x += predkoscPocisku * dt.asSeconds();
-            break;
     }
     SpritePocisku.move(poruszaniePocisku);
     KolizjaPocisku.move(poruszaniePocisku);
