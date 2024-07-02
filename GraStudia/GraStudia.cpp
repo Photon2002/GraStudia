@@ -22,7 +22,7 @@ int main()
     Gracz gracz("assets/gracz.png", 70.f, 130.f, 500.f);
     Pocisk jablko("assets/pocisk.png", gracz, 1000.f);
     sf::Clock clock;
-    //sf::View view(sf::FloatRect(0, 0, 300, 300));
+    sf::View view(sf::FloatRect(0, 0, 350, 350));
     mapa1.WypiszPola();
     KolizjaMapy polaKolizji;
     Plansza pola;
@@ -53,7 +53,7 @@ int main()
         gracz.Aktualizacja(dt);
         jablko.AktualizujPozycje(gracz);
         sf::Vector2f graczPos = gracz.getPosition();
-        //view.setCenter(graczPos);
+        view.setCenter(graczPos);
 
         
         for (auto poleKolizji : polaKolizji.ListaObiektowKolizyjnych)
@@ -67,9 +67,8 @@ int main()
 
         window.clear();
         window.draw(pola);
-        //window.setView(view);
+        window.setView(view);
         gracz.RysujSpritea(window);
-        jablko.RysujPocisk(window);
         if(czyPrzeciecie == true)
         {
             gracz.setPoprzedniaPozycjaGracza(gracz.getPoprzedniaPozycjaGracza());

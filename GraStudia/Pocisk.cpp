@@ -23,7 +23,7 @@ Pocisk::Pocisk(const std::string& texturePath, const Gracz& gracz, float szybkos
 void Pocisk::RysujPocisk(sf::RenderWindow& window)
 {
         window.draw(SpritePocisku);
-        window.draw(KolizjaPocisku);
+        //window.draw(KolizjaPocisku);
 }
 
 void Pocisk::AktualizujPozycje(const Gracz& gracz)
