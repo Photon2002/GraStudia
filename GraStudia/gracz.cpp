@@ -45,21 +45,25 @@ void Gracz::Aktualizacja(const sf::Time& dt)
     sf::Vector2f poruszanie(0.f, 0.f);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
+        kierunek_postaci = W_GORE;
         poruszanie.y -= predkosc * dt.asSeconds();
         tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 102, 19, 25));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
+        kierunek_postaci = W_DOL;
         poruszanie.y += predkosc * dt.asSeconds();
         tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 6, 19, 25));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
+        kierunek_postaci = W_LEWO;
         poruszanie.x -= predkosc * dt.asSeconds();
         tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 38, 19, 25));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
+        kierunek_postaci = W_PRAWO;
         poruszanie.x += predkosc * dt.asSeconds();
         tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 70, 19, 25));
     }

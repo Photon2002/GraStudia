@@ -12,9 +12,16 @@ class Gracz: public Postac
 		sf::Texture tekstura;
 		float predkosc = 100.f;
 		void RuchPostaci(sf::Vector2f delta);
+		enum Kierunek {
+			W_GORE,
+			W_DOL,
+			W_LEWO,
+			W_PRAWO
+		};
+		Kierunek kierunek_postaci = W_GORE;
 	public:
-		sf::RectangleShape KolizjaGracza;
 		sf::Sprite SpriteGracza;
+		sf::RectangleShape KolizjaGracza;
 		Gracz(const std::string& texturePath, float x, float y, float szybkosc);
 		virtual void RysujSpritea(sf::RenderWindow& window);
 		void Aktualizacja(const sf::Time& dt);

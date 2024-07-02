@@ -22,11 +22,12 @@ int main()
     Gracz gracz("assets/gracz.png", 70.f, 130.f, 500.f);
     Pocisk jablko("assets/pocisk.png", gracz, 1000.f);
     sf::Clock clock;
-    sf::View view(sf::FloatRect(0, 0, 300, 300));
+    //sf::View view(sf::FloatRect(0, 0, 300, 300));
     mapa1.WypiszPola();
     KolizjaMapy polaKolizji;
     Plansza pola;
     bool czyPrzeciecie = false;
+    std::vector<Pocisk> pociskiWystrzelone;
 
     if (!pola.load("assets/paleta.png", sf::Vector2u(32, 32), mapa1.MapaJednowymiarowa, mapa1.szerokosc, mapa1.wysokosc))
         return -1;
@@ -44,7 +45,7 @@ int main()
         gracz.Aktualizacja(dt);
         jablko.AktualizujPozycje(gracz);
         sf::Vector2f graczPos = gracz.getPosition();
-        view.setCenter(graczPos);
+        //view.setCenter(graczPos);
 
         
 
@@ -59,14 +60,30 @@ int main()
 
         window.clear();
         window.draw(pola);
-        window.setView(view);
+        //window.setView(view);
         gracz.RysujSpritea(window);
-        jablko.RysujPocisk(window);
+        //jablko.RysujPocisk(window);
         if(czyPrzeciecie == true)
         {
             gracz.setPoprzedniaPozycjaGracza(gracz.getPoprzedniaPozycjaGracza());
             gracz.KolizjaGracza.setPosition(gracz.getPoprzedniaPozycjaGracza());
             gracz.SpriteGracza.setPosition(gracz.getPoprzedniaPozycjaGracza());
+        }
+        /*
+            std::cout << "Stworzylem pocisk!!" << std::endl;
+            std::cout << "Pozycja oryginalu: " << gracz.poprzedniaPozycjaGracza.x << ", " << gracz.poprzedniaPozycjaGracza.y << std::endl;
+            std::cout << "Pozycja kopii: " << nowyPocisk.PozycjaPocisku.x << ", " << nowyPocisk.PozycjaPocisku.y << std::endl;
+
+        }*/
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) 
+        {
+            // Wystrzelenie pocisku
+            jablko.Strzal(window, pociskiWystrzelone);
+        }
+
+        for (Pocisk& pocisk : pociskiWystrzelone) {
+            pocisk.LotPocisku(dt);
+            pocisk.RysujPocisk(window);
         }
         window.display();
     }
