@@ -16,7 +16,6 @@ Mapa::Mapa(const std::string& sciezkaPliku)
 	WczytajMape();
 }
 
-
 void Mapa::WczytajMape()
 {
 	for (unsigned int y = 0; y < wysokosc; y++)
@@ -46,7 +45,7 @@ void Mapa::WczytajMape()
 		{
 			MapaJednowymiarowa.push_back(TablicaWartosci[y][x]);
 		}
-	}//tu mozna przerobic na zakresowa petle for
+	}
 
 	for (int element: MapaJednowymiarowa)
 	{
@@ -63,22 +62,6 @@ void Mapa::WczytajMape()
 
 void Mapa::WypiszPola()
 {
-	/*for (unsigned int y = 0; y < wysokosc; y++)
-	{
-		for (unsigned int x = 0; x < szerokosc; x++)
-		{
-			std::cout << TablicaWartosci[y][x] << " ";
-		}
-		std::cout << std::endl;
-	}
-	for (int i = 0; i < MapaJednowymiarowa.size(); ++i)
-	{
-		std::cout << MapaJednowymiarowa[i] << " ";
-		if ((i+1)%szerokosc == 0)
-		{
-			std::cout<< "" << std::endl;
-		}
-	}*/
 	for (int i = 0; i < MapaKolizji.size(); ++i)
 	{
 		std::cout << MapaKolizji[i] << " ";

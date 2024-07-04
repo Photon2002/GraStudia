@@ -16,7 +16,8 @@ class Gracz: public Postac
 		
 	public:
 		sf::Sprite SpriteGracza;
-		enum Kierunek {
+		enum Kierunek 
+		{
 			W_GORE,
 			W_DOL,
 			W_LEWO,

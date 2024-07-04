@@ -2,18 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-
-/*Postac::Postac(float radius) {
-    cialo.setRadius(radius);
-    cialo.setFillColor(sf::Color::Blue);
-    cialo.setPosition(100, 100);  // Ustawienie pocz¹tkowej pozycji
-    cialo.setOrigin(radius, radius);  // Ustawienie œrodka ko³a
-}
-
-void Postac::draw(sf::RenderWindow& window) {
-    window.draw(cialo);
-}
-*/
 Gracz::Gracz(const std::string& texturePath, float x, float y, float szybkosc)
 {
     if (!tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 6, 19, 25)))
@@ -37,7 +25,6 @@ void Gracz::RuchPostaci(sf::Vector2f delta)
 void Gracz::RysujSpritea(sf::RenderWindow& window)
 {
     window.draw(SpriteGracza);
-    //window.draw(KolizjaGracza);
 }
 
 void Gracz::Aktualizacja(const sf::Time& dt)
@@ -68,25 +55,12 @@ void Gracz::Aktualizacja(const sf::Time& dt)
         tekstura.loadFromFile("assets/gracz.png", sf::IntRect(39, 70, 19, 25));
     }
     RuchPostaci(poruszanie);
-
-    /*//lewe
-    if (SpriteGracza.getPosition().x < 0.f)
-        SpriteGracza.setPosition(0.f, SpriteGracza.getPosition().y);
-    //gora
-    if (SpriteGracza.getPosition().y < 0.f)
-        SpriteGracza.setPosition(SpriteGracza.getPosition().x, 0.f);
-    //prawe
-    if (SpriteGracza.getPosition().x + SpriteGracza.getGlobalBounds().width > 1024)
-        SpriteGracza.setPosition(1024 - SpriteGracza.getGlobalBounds().width, SpriteGracza.getPosition().y);
-    //dol
-    if (SpriteGracza.getPosition().y > 1024)
-        SpriteGracza.setPosition(SpriteGracza.getPosition().x, 1024 - SpriteGracza.getGlobalBounds().height);*/
 }
 
 
 sf::Vector2f Gracz::getPosition() const
 {
-    return SpriteGracza.getPosition(); // Zak³adam, ¿e masz sprite reprezentuj¹cy gracza
+    return SpriteGracza.getPosition();
 }
 
 sf::Vector2f Gracz::getPoprzedniaPozycjaGracza() const

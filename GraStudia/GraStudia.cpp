@@ -54,7 +54,6 @@ int main()
         jablko.AktualizujPozycje(gracz);
         sf::Vector2f graczPos = gracz.getPosition();
         view.setCenter(graczPos);
-
         
         for (auto poleKolizji : polaKolizji.ListaObiektowKolizyjnych)
         {
@@ -75,18 +74,6 @@ int main()
             gracz.KolizjaGracza.setPosition(gracz.getPoprzedniaPozycjaGracza());
             gracz.SpriteGracza.setPosition(gracz.getPoprzedniaPozycjaGracza());
         }
-        /*
-            std::cout << "Stworzylem pocisk!!" << std::endl;
-            std::cout << "Pozycja oryginalu: " << gracz.poprzedniaPozycjaGracza.x << ", " << gracz.poprzedniaPozycjaGracza.y << std::endl;
-            std::cout << "Pozycja kopii: " << nowyPocisk.PozycjaPocisku.x << ", " << nowyPocisk.PozycjaPocisku.y << std::endl;
-
-        }*/
-
-        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        {
-            // Wystrzelenie pocisku
-            jablko.Strzal(window, pociskiWystrzelone);
-        }*/
         if (spacePressed)
         {
             jablko.Strzal(window, pociskiWystrzelone, gracz);
@@ -105,10 +92,7 @@ int main()
                 pociskiWystrzelone.erase(pociskiWystrzelone.begin()+i);//iterator
             }
         }
-
-
         window.display();
     }
-    
     return 0;
 }

@@ -23,7 +23,6 @@ Pocisk::Pocisk(const std::string& texturePath, const Gracz& gracz, float szybkos
 void Pocisk::RysujPocisk(sf::RenderWindow& window)
 {
         window.draw(SpritePocisku);
-        //window.draw(KolizjaPocisku);
 }
 
 void Pocisk::AktualizujPozycje(const Gracz& gracz)
@@ -97,32 +96,7 @@ void Pocisk::LotPocisku(const sf::Time& dt)
     *this += poruszaniePocisku;
 }
 
-
-/*
-void Pocisk::LotPocisku(const sf::Time& dt)
-{
-    sf::Vector2f poruszaniePocisku(0.f, 0.f);
-    switch (kierunekLotu)
-    {
-        case Gracz::Kierunek::W_GORE:
-            poruszaniePocisku.y -= predkoscPocisku * dt.asSeconds();
-            break;
-        case Gracz::Kierunek::W_DOL:
-            poruszaniePocisku.y += predkoscPocisku * dt.asSeconds();
-            break;
-        case Gracz::Kierunek::W_LEWO:
-            poruszaniePocisku.x -= predkoscPocisku * dt.asSeconds();
-            break;
-        case Gracz::Kierunek::W_PRAWO:
-            poruszaniePocisku.x += predkoscPocisku * dt.asSeconds();
-            break;
-    }
-    SpritePocisku.move(poruszaniePocisku);
-    KolizjaPocisku.move(poruszaniePocisku);
-    PozycjaPocisku += poruszaniePocisku;
-}*/
-
 Pocisk::~Pocisk()
 {
-    //std::cout << "Destruktor, obiekt usuniety!" << std::endl;
+
 }

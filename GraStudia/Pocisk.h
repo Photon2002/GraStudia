@@ -31,7 +31,6 @@ class Pocisk
 		void Strzal(sf::RenderWindow& window, std::vector<Pocisk>& pociski, const Gracz& gracz);
 		void LotPocisku(const sf::Time& dt);
 		Pocisk& operator+=(sf::Vector2f poruszaniePocisku);
-		//void LotPocisku(const sf::Time& dt, const Gracz& gracz);
 };
 
 	
